@@ -1,0 +1,308 @@
+@media (max-width: 1200px) {
+    .hero_wrapper .nav {
+        padding: 0 24px;
+    }
+    .hero img {
+        width: 100px;
+    }
+    .hero .hero_content h1 {
+        font-size: 52px;
+        line-height: 78px;
+    }
+    .hero .hero_content svg {
+        width: 40px;
+    }
+    .hero .hero_content p {
+        font-size: 26px;
+    }
+    .hero .hero_content a {
+        font-size: 16px;
+        padding: 5px 32px;
+        margin-top: 48px;
+    }
+    .establishment h1 {
+        font-size: 34px;
+        line-height: 36px;
+    }
+    .establishment p {
+        font-size: 19px;
+        line-height: 32px;
+    }
+    .establishment {
+        padding: 120px 0;
+    }
+    .establishment .container img {
+        width: 520px;
+    }
+}
+
+@media (max-width: 900px) {
+    .hero .hero_content {
+        padding: 0 40px;
+    }
+    .hero .hero_content svg {
+        width: 32px;
+    }
+    .hero .hero_content h1 {
+        font-size: 47px;
+        line-height: 58px;
+    }
+    .hero .hero_content p {
+        font-size: 22px;
+    }
+    .hero .hero_content a {
+        font-size: 14px;
+        padding: 4px 24px;
+        margin-top: 38px;
+    }
+    .establishment {
+        padding: 100px 0;
+    }
+    .establishment .container > div:first-child span {
+        font-size: 22px;
+    }
+    .establishment .container img {
+        width: 480px;
+    }
+    .establishment h1 {
+        font-size: 26px;
+        line-height: 26px;
+    }
+    .establishment p {
+        font-size: 16px;
+        line-height: 27px;
+        max-width: 90%;
+    }
+    .portfolio .container > p {
+        font-size: 13px;
+        line-height: 28.94px;
+        max-width: 500px;
+        margin-bottom: 40px;
+    }
+    .portfolio .cards_wrapper {
+        gap: 16px;
+    }
+    .portfolio .card {
+        height: 130px;
+        border-radius: 12px;
+    }
+    .portfolio .card p {
+        font-size: 23px;
+        line-height: 40px;
+        right: 11px;
+        bottom: 11px;
+        z-index: 3;
+    }
+    .portfolio .container > p:last-child {
+        margin-top: 26px;
+    }
+}
+@media (max-width: 767.98px) {
+    .sponsors {
+        padding: 56px 0;
+    }
+    .sponsors p {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 26px;
+        text-align: center;
+        color: #4D4D4D;
+        margin-bottom: 40px;
+    }
+    .sponsors .swiper-slide {
+        width: 100px;
+    }
+}
+@media (max-width: 640px) {
+    .portfolio .card {
+        height: 160px;
+    }
+    .portfolio .cards_wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+@media (max-width: 600px) {
+    .hero {
+        min-height: 530px;
+        width: 100%;
+        padding: 56px 0 140px;
+    }
+    .hero_wrapper .nav {
+        padding: 0;
+        padding-right: 0px;
+        padding-right: 16px;
+        border: none;
+    }
+    .hero_wrapper .nav {
+        padding: 0;
+        padding-right: 0px;
+        padding-right: 16px;
+        border: none;
+    }
+    .hero .hero_content {
+        padding: 0;
+        margin-right: -60px;
+    }
+    .hero .hero_content h1 {
+        font-size: 40px;
+        line-height: 49px;
+    }
+    .hero .hero_content p {
+        font-size: 16px;
+    }
+    .hero .hero_content a {
+        font-size: 12px;
+        padding: 3px 16px;
+        margin-top: 28px;
+    }
+    .social {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        z-index: 99999999999;
+    }
+    .social a {
+        width: 38px;
+        height: 38px;
+        padding: 7px;
+        border-radius: 50%;
+    }
+    .whatsapp {
+        width: 46px;
+        position: fixed;
+        bottom: 12px;
+        right: 12px;
+        z-index: 99999;
+    }
+    .hero .hero_content {
+        justify-content: end;
+    }
+    .hero  {
+        max-width: 100vw;
+        overflow: hidden;
+    }
+    .establishment {
+        padding: 80px 0;
+    }
+    .establishment .container > div:first-child span {
+        font-size: 20px;
+    }
+    .establishment .container img {
+        width: 100%;
+        margin: 16px 0;
+    }
+    .establishment h1 {
+        font-size: 23px;
+        line-height: 18px;
+        margin-bottom: 14px;
+    }
+    .establishment p {
+        font-size: 13px;
+        line-height: 22px;
+        max-width: 90%;
+    }
+    .establishment .text span {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 20px;
+        text-align: right;
+        white-space: nowrap;
+        color: #121212;
+    }
+    .portfolio {
+        padding: 40px 0;
+    }
+    .portfolio .container > p {
+        font-size: 12px;
+        line-height: 25.94px;
+        max-width: 500px;
+        margin-bottom: 24px;
+    }
+    .sponsors {
+        padding: 80px 0;
+    }
+    .sponsors h1 {
+        font-size: 34px;
+        font-weight: 600;
+        line-height: 30px;
+        margin-bottom: 12px;
+        color: #FF512F;
+        text-align: center;
+    }
+    .sponsors p {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 34px;
+        text-align: center;
+        color: #4D4D4D;
+        margin-bottom: 60px;
+    }
+}
+
+@media (max-width: 450px) {
+    .establishment {
+        padding: 80px 0;
+    }
+    .establishment .container > div:first-child span {
+        font-size: 17px;
+        line-height: 19px;
+    }   
+    .establishment .container img {
+        width: 100%;
+        margin: 16px 0;
+    }
+    .establishment h1 {
+        font-size: 16px;
+        line-height: 18px;
+        margin-bottom: 14px;
+        width: 100%;
+        white-space: nowrap;
+    }
+    .establishment p {
+        font-size: 11px;
+        line-height: 20px;
+        max-width: 90%;
+    }
+    .establishment .text span {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 20px;
+        text-align: right;
+        white-space: nowrap;
+        color: #121212;
+    }
+}
+@media (max-width: 300px) {
+    
+}
+
+@media (max-width: 1199.98px) {
+    footer .text  p {
+        max-width: 450px;
+    }
+}
+@media (max-width: 992.98px) {
+    footer .container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+footer .text p {
+    text-align: center;
+    max-width: 100%;
+}
+footer .socials .download {
+    justify-content: center;
+}
+}
+
+@media (max-width: 767.98px) {
+    footer {
+        padding: 56px 0;
+    }
+}
