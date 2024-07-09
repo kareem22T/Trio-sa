@@ -7,7 +7,6 @@ import ourWork_img from "../../images/bcbfb627b531b38c8bda40ab1a51c57c.jpeg"
 import sponsor from "../../images/sponsor.png"
 import logodark from "../../images/logo-black.png"
 import { motion, useTransform, useViewportScroll } from "framer-motion";
-import video_main from "../../videos/video.mp4"
 import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 
