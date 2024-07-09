@@ -164,15 +164,15 @@ const Home = () => {
                     <img src={logo} alt="logo" />
                     <p>وكالة ابداعية تقدم خدمات بناء الاستراتيجيات التسويقية وصناعة الحملات والاعلانات الابداعية والتسويق الرقمي.</p>
                     <div className="cards_wrapper">
-                        <Link to={""} className="card">
+                        <Link to={"/about-us"} className="card">
                             <img src={about_us_img} alt="" />
                             <p>من نحن</p>
                         </Link>
-                        <Link to={""} className="card">
+                        <Link to={"/services"} className="card">
                             <img src={services_img} alt="" />
                             <p>خدماتنا</p>
                         </Link>
-                        <Link to={""} className="card">
+                        <Link to={"/portfolio"} className="card">
                             <img src={ourWork_img} alt="" />
                             <p>اعمالنا</p>
                         </Link>
