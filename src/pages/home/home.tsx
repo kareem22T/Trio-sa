@@ -257,9 +257,9 @@ const Home = () => {
                         spaceBetween={20}
                         slidesPerView={"auto"}
                         freeMode={true}
-                        autoplay={{ delay: 2000, disableOnInteraction: false }}
+                        autoplay={{ delay: 1000, disableOnInteraction: false }}
                         loop={true}
-                        speed={500}
+                        speed={350}
                         className="mySwiper"
                         modules={[FreeMode, Autoplay]}
                     >
