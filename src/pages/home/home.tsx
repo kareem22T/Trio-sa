@@ -88,7 +88,7 @@ const Home = () => {
     const scale = useTransform(
         scrollTop,
         [150, 600],
-        [1, 40]
+        [1, 60]
     );
 
     const move = useTransform(
