@@ -160,6 +160,13 @@ const Home = () => {
             console.log(isPassRef.current);
             console.log(stopRef.current);
             console.log(showElmentRef.current);
+            console.log(windowTop);
+            console.log();
+            if (windowTop < window.innerHeight - 200) {
+                setIsPass(false);
+                setStop(false)
+                setIsElementVisible(false)
+            }
             console.log("---------------------");
             
             if (elementRefCont.current.getBoundingClientRect().top > 0 && stopRef.current) {
