@@ -297,3 +297,8 @@ form button svg path{
         border-radius: 4px;
     }
 }
+
+input:focus, select:focus, textarea:focus {
+    border: 2px solid #FF2626;
+    outline: none
+}
