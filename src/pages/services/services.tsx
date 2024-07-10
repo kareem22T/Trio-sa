@@ -2,12 +2,21 @@ import DefaultLayout from "../../layout/DefaultLayout"
 import logo from "../../images/logo.png"
 import service from "../../images/service.jpeg"
 import './services.css'
-import { useDispatch } from "react-redux"
-import { AppDispatch } from "../../store"
+import { useDispatch, useSelector } from "react-redux"
+import { AppDispatch, RootState } from "../../store"
 import { setShowNav } from "../../features/settingsSlice"
+import { useEffect } from "react"
+import { getServices } from "../../features/serviceSlice"
+import { API_URL } from "../../_env"
 
 const Services = () => {
     const dispatch = useDispatch<AppDispatch>();
+    const services = useSelector((state: RootState) => state.services.services);
+    
+    useEffect(() => {
+        dispatch(getServices())
+        
+    }, [dispatch])
 
     return (
         <DefaultLayout>
@@ -36,118 +45,29 @@ const Services = () => {
             <div className="container">
                 <h1>ماذا نقدم؟</h1>
                 <div className="cards_wrapper">
-                    <div className="card">
-                        <div className="text">
-                            <h2>استراتبجيه الخطط التسويقيه</h2>
-                            <ul>
-                                <li>تحليل SOWT</li>
-                                <li>المزيج التسويقي</li>
-                                <li>الفئه المستهدفه</li>
-                                <li>الخطه الزمنيه</li>
-                                <li>الأفكار التسويقيه</li>
-                                <li>تحليل المنافسين</li>
-                            </ul>
-                        </div>
-                        <div className="img">
-                            <img src={service} alt="" />
-                        </div>
-                    </div>
-                    <div className="card">
-                        <div className="text">
-                            <h2>استراتبجيه الخطط التسويقيه</h2>
-                            <ul>
-                                <li>تحليل SOWT</li>
-                                <li>المزيج التسويقي</li>
-                                <li>الفئه المستهدفه</li>
-                                <li>الخطه الزمنيه</li>
-                                <li>الأفكار التسويقيه</li>
-                                <li>تحليل المنافسين</li>
-                            </ul>
-                        </div>
-                        <div className="img">
-                            <img src={service} alt="" />
-                        </div>
-                    </div>
-                    <div className="card">
-                        <div className="text">
-                            <h2>استراتبجيه الخطط التسويقيه</h2>
-                            <ul>
-                                <li>تحليل SOWT</li>
-                                <li>المزيج التسويقي</li>
-                                <li>الفئه المستهدفه</li>
-                                <li>الخطه الزمنيه</li>
-                                <li>الأفكار التسويقيه</li>
-                                <li>تحليل المنافسين</li>
-                            </ul>
-                        </div>
-                        <div className="img">
-                            <img src={service} alt="" />
-                        </div>
-                    </div>
-                    <div className="card">
-                        <div className="text">
-                            <h2>استراتبجيه الخطط التسويقيه</h2>
-                            <ul>
-                                <li>تحليل SOWT</li>
-                                <li>المزيج التسويقي</li>
-                                <li>الفئه المستهدفه</li>
-                                <li>الخطه الزمنيه</li>
-                                <li>الأفكار التسويقيه</li>
-                                <li>تحليل المنافسين</li>
-                            </ul>
-                        </div>
-                        <div className="img">
-                            <img src={service} alt="" />
-                        </div>
-                    </div>
-                    <div className="card">
-                        <div className="text">
-                            <h2>استراتبجيه الخطط التسويقيه</h2>
-                            <ul>
-                                <li>تحليل SOWT</li>
-                                <li>المزيج التسويقي</li>
-                                <li>الفئه المستهدفه</li>
-                                <li>الخطه الزمنيه</li>
-                                <li>الأفكار التسويقيه</li>
-                                <li>تحليل المنافسين</li>
-                            </ul>
-                        </div>
-                        <div className="img">
-                            <img src={service} alt="" />
-                        </div>
-                    </div>
-                    <div className="card">
-                        <div className="text">
-                            <h2>استراتبجيه الخطط التسويقيه</h2>
-                            <ul>
-                                <li>تحليل SOWT</li>
-                                <li>المزيج التسويقي</li>
-                                <li>الفئه المستهدفه</li>
-                                <li>الخطه الزمنيه</li>
-                                <li>الأفكار التسويقيه</li>
-                                <li>تحليل المنافسين</li>
-                            </ul>
-                        </div>
-                        <div className="img">
-                            <img src={service} alt="" />
-                        </div>
-                    </div>
-                    <div className="card">
-                        <div className="text">
-                            <h2>استراتبجيه الخطط التسويقيه</h2>
-                            <ul>
-                                <li>تحليل SOWT</li>
-                                <li>المزيج التسويقي</li>
-                                <li>الفئه المستهدفه</li>
-                                <li>الخطه الزمنيه</li>
-                                <li>الأفكار التسويقيه</li>
-                                <li>تحليل المنافسين</li>
-                            </ul>
-                        </div>
-                        <div className="img">
-                            <img src={service} alt="" />
-                        </div>
-                    </div>
+                        {
+                            (services && services.length > 0) &&(
+                                services.map(service => (
+                                    <div className="card">
+                                        <div className="text">
+                                            <h2>{service.title}</h2>
+                                            <ul>
+                                                {
+                                                    service.points && (
+                                                        service.points?.map(point => (
+                                                            <li>{point.point}</li>
+                                                        ))
+                                                    )
+                                                }
+                                            </ul>
+                                        </div>
+                                        <div className="img">
+                                            <img src={API_URL + service.photo_path} alt="" />
+                                        </div>                                
+                                    </div>
+                                ))
+                            )
+                        }
                 </div>
             </div>
         </section>

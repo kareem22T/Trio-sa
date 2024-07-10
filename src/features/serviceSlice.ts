@@ -7,7 +7,9 @@ type ServiceType = {
     id: number;
     photo_path: string;
     title: string;
-    description: string;
+    points: [
+        {point: string}
+    ];
 };
 
 type GetServiceRespons = {

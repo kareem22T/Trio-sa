@@ -7,11 +7,18 @@ import test2 from "../../images/test2.png"
 import './about.css'
 import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "../../store"
-import { setShowNav } from "../../features/settingsSlice"
+import { getSettings, setShowNav } from "../../features/settingsSlice"
+import { useEffect } from "react"
 
 const About = () => {
     const dispatch = useDispatch<AppDispatch>();
     const showNav = useSelector((state: RootState) => state.settings.showNav);
+    const settings = useSelector((state: RootState) => state.settings.settings);
+    
+    useEffect(() => {
+        dispatch(getSettings())
+        
+    }, [dispatch])
 
     return (
         <DefaultLayout>
@@ -42,8 +49,7 @@ const About = () => {
                     <h1>
                         من هم <span>Trio</span> ؟
                     </h1>
-                    <p>
-                        نحن وكاله <span>تسويق</span> ذات <span>طاقم سعودي 100%</span> نجمع ما بين الابتكار والابداع والوصول الواضح لعملائك باستخدام احدث اساليب التسويق وجعلك المنفرد بجودتك .
+                    <p dangerouslySetInnerHTML={{ __html: settings?.who_trio || "" }}>
                     </p>
                 </div>
 
@@ -79,13 +85,13 @@ const About = () => {
                 <h1>مبدأنا</h1>
                 <div className="cards_wrappers_b">
                     <div>
-                        التفرد والتميز
+                    {settings?.our_principle_1 as any || ""}
                     </div>
                     <div>
-                        الابداع في الفكر
+                    {settings?.our_principle_2 as any || ""}
                     </div>
                     <div>
-                        التعاون لخلق الفرق
+                    {settings?.our_principle_3 as any || ""}
                     </div>
                 </div>
             </div>

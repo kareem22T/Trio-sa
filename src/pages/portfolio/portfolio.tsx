@@ -1,12 +1,30 @@
 import DefaultLayout from "../../layout/DefaultLayout"
 import logo from "../../images/logo.png"
 import './portfolio.css'
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store";
 import { setShowNav } from "../../features/settingsSlice";
-const Portfolio = () => {
-    const dispatch = useDispatch<AppDispatch>();
+import { fetchWorks } from "../../features/worksSlice";
+import { useEffect } from "react";
+import { API_URL } from "../../_env";
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
+const Portfolio = () => {
+
+    const dispatch = useDispatch<AppDispatch>();
+    const works = useSelector((state: RootState) => state.works.works);
+    const totalPages = useSelector((state: RootState) => state.works.totalPages);
+    const currentPage = useSelector((state: RootState) => state.works.pageNumber);
+  
+    const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+      dispatch(fetchWorks({ page: value, pageSize: 20}));
+    };
+
+    useEffect(() => {
+        dispatch(fetchWorks({page: 1, pageSize: 20}));
+      }, [dispatch]);
+    
     return (
         <DefaultLayout>
         <section className="hero portfolio-hero">
@@ -32,113 +50,30 @@ const Portfolio = () => {
         </section>
         <section className="portfolio_cards">
             <div className="container">
-                <div className="portfolio_card">
-                    <img src="" alt="" />
-                    <h2>نخبه معادن</h2>
-                    <p>لتعظيم الصورة الذهنيّـة لعملائنا، من خلال حلول تواصلية وتسويقية .</p>
-                </div>
-                <div className="portfolio_card">
-                    <img src="" alt="" />
-                    <h2>نخبه معادن</h2>
-                    <p>لتعظيم الصورة الذهنيّـة لعملائنا، من خلال حلول تواصلية وتسويقية .</p>
-                </div>
-                <div className="portfolio_card">
-                    <img src="" alt="" />
-                    <h2>نخبه معادن</h2>
-                    <p>لتعظيم الصورة الذهنيّـة لعملائنا، من خلال حلول تواصلية وتسويقية .</p>
-                </div>
-                <div className="portfolio_card">
-                    <img src="" alt="" />
-                    <h2>نخبه معادن</h2>
-                    <p>لتعظيم الصورة الذهنيّـة لعملائنا، من خلال حلول تواصلية وتسويقية .</p>
-                </div>
-                <div className="portfolio_card">
-                    <img src="" alt="" />
-                    <h2>نخبه معادن</h2>
-                    <p>لتعظيم الصورة الذهنيّـة لعملائنا، من خلال حلول تواصلية وتسويقية .</p>
-                </div>
-                <div className="portfolio_card">
-                    <img src="" alt="" />
-                    <h2>نخبه معادن</h2>
-                    <p>لتعظيم الصورة الذهنيّـة لعملائنا، من خلال حلول تواصلية وتسويقية .</p>
-                </div>
-                <div className="portfolio_card">
-                    <img src="" alt="" />
-                    <h2>نخبه معادن</h2>
-                    <p>لتعظيم الصورة الذهنيّـة لعملائنا، من خلال حلول تواصلية وتسويقية .</p>
-                </div>
-                <div className="portfolio_card">
-                    <img src="" alt="" />
-                    <h2>نخبه معادن</h2>
-                    <p>لتعظيم الصورة الذهنيّـة لعملائنا، من خلال حلول تواصلية وتسويقية .</p>
-                </div>
-                <div className="portfolio_card">
-                    <img src="" alt="" />
-                    <h2>نخبه معادن</h2>
-                    <p>لتعظيم الصورة الذهنيّـة لعملائنا، من خلال حلول تواصلية وتسويقية .</p>
-                </div>
-                <div className="portfolio_card">
-                    <img src="" alt="" />
-                    <h2>نخبه معادن</h2>
-                    <p>لتعظيم الصورة الذهنيّـة لعملائنا، من خلال حلول تواصلية وتسويقية .</p>
-                </div>
-                <div className="portfolio_card">
-                    <img src="" alt="" />
-                    <h2>نخبه معادن</h2>
-                    <p>لتعظيم الصورة الذهنيّـة لعملائنا، من خلال حلول تواصلية وتسويقية .</p>
-                </div>
-                <div className="portfolio_card">
-                    <img src="" alt="" />
-                    <h2>نخبه معادن</h2>
-                    <p>لتعظيم الصورة الذهنيّـة لعملائنا، من خلال حلول تواصلية وتسويقية .</p>
-                </div>
-                <div className="portfolio_card">
-                    <img src="" alt="" />
-                    <h2>نخبه معادن</h2>
-                    <p>لتعظيم الصورة الذهنيّـة لعملائنا، من خلال حلول تواصلية وتسويقية .</p>
-                </div>
-                <div className="portfolio_card">
-                    <img src="" alt="" />
-                    <h2>نخبه معادن</h2>
-                    <p>لتعظيم الصورة الذهنيّـة لعملائنا، من خلال حلول تواصلية وتسويقية .</p>
-                </div>
-                <div className="portfolio_card">
-                    <img src="" alt="" />
-                    <h2>نخبه معادن</h2>
-                    <p>لتعظيم الصورة الذهنيّـة لعملائنا، من خلال حلول تواصلية وتسويقية .</p>
-                </div>
-                <div className="portfolio_card">
-                    <img src="" alt="" />
-                    <h2>نخبه معادن</h2>
-                    <p>لتعظيم الصورة الذهنيّـة لعملائنا، من خلال حلول تواصلية وتسويقية .</p>
-                </div>
-                <div className="portfolio_card">
-                    <img src="" alt="" />
-                    <h2>نخبه معادن</h2>
-                    <p>لتعظيم الصورة الذهنيّـة لعملائنا، من خلال حلول تواصلية وتسويقية .</p>
-                </div>
-                <div className="portfolio_card">
-                    <img src="" alt="" />
-                    <h2>نخبه معادن</h2>
-                    <p>لتعظيم الصورة الذهنيّـة لعملائنا، من خلال حلول تواصلية وتسويقية .</p>
-                </div>
-                <div className="portfolio_card">
-                    <img src="" alt="" />
-                    <h2>نخبه معادن</h2>
-                    <p>لتعظيم الصورة الذهنيّـة لعملائنا، من خلال حلول تواصلية وتسويقية .</p>
-                </div>
-                <div className="portfolio_card">
-                    <img src="" alt="" />
-                    <h2>نخبه معادن</h2>
-                    <p>لتعظيم الصورة الذهنيّـة لعملائنا، من خلال حلول تواصلية وتسويقية .</p>
-                </div>
-                <div className="portfolio_card">
-                    <img src="" alt="" />
-                    <h2>نخبه معادن</h2>
-                    <p>لتعظيم الصورة الذهنيّـة لعملائنا، من خلال حلول تواصلية وتسويقية .</p>
-                </div>
+                {
+                    (works && works.length )&&(
+                        works.map((work => (
+                            <div className="portfolio_card">
+                                <img src={API_URL + work.photo_path} alt="" />
+                                <h2>{work.title }</h2>
+                                <p>
+                                    {work.description}
+                                </p>
+                            </div>
+                        )))
+                    )
+                }
             </div>
         </section>
+            <div style={{margin: "auto", display: "block", marginBottom: 16, width: "max-content"}}>
+                  {totalPages  && totalPages > 1 ? (
+                    <Stack spacing={2} dir="ltr" style={{width: "max-content"}}>
+                      <Pagination count={totalPages} page={currentPage} onChange={handleChange} variant="outlined" color='primary' shape="rounded" />
+                    </Stack>
+                  ) : (
+                    <></>
+                  )}
+            </div>
         </DefaultLayout>
     )
 }

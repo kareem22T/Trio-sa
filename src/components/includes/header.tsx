@@ -6,9 +6,11 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
-import { setShowNav } from "../../features/settingsSlice";
+import { getSettings, setShowNav } from "../../features/settingsSlice";
+import { useEffect } from "react";
 
 const Header = () => {
+
     const container = {
         hidden: { opacity: 1, scale: 0 },
         visible: {
@@ -52,7 +54,13 @@ const Header = () => {
     };
     const dispatch = useDispatch<AppDispatch>();
     const showNav = useSelector((state: RootState) => state.settings.showNav);
+    const settings = useSelector((state: RootState) => state.settings.settings);
     
+    useEffect(() => {
+        dispatch(getSettings())
+        
+    }, [dispatch])
+
     return (
         <header>
             <nav className={showNav ? "open" : ""}>
@@ -96,24 +104,40 @@ const Header = () => {
                 initial="hidden"
                 animate="visible"                        
                 className="social">
-                <motion.a variants={item} href="">
-                    <img src={x} />
-                </motion.a>
-                <motion.a variants={item} href="">
-                    <img src={tiktok} />
-                </motion.a>
-                <motion.a variants={item} href="">
-                    <img src={instagram} />
-                </motion.a>
+                {
+                    settings?.x_url && (
+                        <motion.a variants={item} href={settings.x_url} target="blanck">
+                            <img src={x} alt="" />
+                        </motion.a>
+                    )
+                }
+                {
+                    settings?.tiktok_url && (
+                        <motion.a variants={item} href={settings.tiktok_url} target="blanck">
+                            <img src={tiktok} alt="" />
+                        </motion.a>
+                    )
+                }
+                {
+                    settings?.instagram_url && (
+                        <motion.a variants={item} href={settings.instagram_url} target="blanck">
+                            <img src={instagram} alt="" />
+                        </motion.a>
+                    )
+                }
             </motion.div>
             <motion.div
                 variants={container}
                 initial="hidden"
                 animate="visible">
 
-            <motion.a variants={item2} href="" className="whatsapp">
-                <img src={whatsapp} alt="" />
-            </motion.a>
+            {
+                settings?.whatsapp_url && (
+                    <motion.a variants={item2} href={settings.whatsapp_url} target="blanck" className="whatsapp">
+                        <img src={whatsapp} alt="" />
+                    </motion.a>
+                )
+            }
             </motion.div>
         </header>
     )

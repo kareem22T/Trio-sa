@@ -94,7 +94,7 @@ header .nav button {
     width: 40px;
     height: 40px;
     margin: 0 auto;
-    background: #ececec47;
+    background: #ececec9e;
     border-radius: 50%;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     position: fixed;
@@ -236,6 +236,8 @@ header .nav button {
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: 100vw;
+    max-height: 100vh;
 }
 
 .establishment .container {
@@ -634,7 +636,7 @@ line-height: 18px;
 color: #FF512F;
 }
 
-nav {
+header nav {
     width: 100%;
     height: 100vh;
     position: fixed;
@@ -649,7 +651,7 @@ nav {
     display: none;
 }
 
-nav.open {
+header nav.open {
     display: flex;
     animation-delay: 1s;
     animation: opacityAni .5s ease-out ;
@@ -710,7 +712,7 @@ nav.open {
     }
   }
 
-nav .links {
+header nav .links {
     display: flex;
     flex-direction: column;
     font-family: Noto Kufi Arabic;
@@ -724,22 +726,22 @@ nav .links {
     transition: all .3s ease-in;
 }
 
-nav .links a {
+header nav .links a {
     text-decoration: none;
     color: #F8F8F8;
     transition: all .3 ease-in;
 }
 
-nav .links a:hover {
+header nav .links a:hover {
     color: #FF512F;
 }
 
-nav .social_link svg {
+header nav .social_link svg {
     width: 40px;
     margin-left: 24px;
 }
 
-nav button {
+header nav button {
     background: transparent;
     border: none;
     color: white;
@@ -748,11 +750,11 @@ nav button {
 }
 
 @media (max-width: 767.98px) {
-    nav .social_link svg {
+    header nav .social_link svg {
         width: 30px;
         margin-left: 16px;
     }
-    nav .links {
+    header nav .links {
         display: flex;
         flex-direction: column;
         font-family: Noto Kufi Arabic;
@@ -765,7 +767,7 @@ nav button {
         margin-bottom: 24px;
         transition: all .3s ease-in;
     }
-    nav button {
+    header nav button {
         background: transparent;
         border: none;
         color: white;
@@ -802,4 +804,10 @@ nav button {
 
 footer .socials a svg {
     width: 29px;
+}
+
+.Mui-selected {
+    color: #ff512f !important;
+    border: 1px solid #ff512f !important;
+    background-color: #fff !important;
 }

@@ -4,10 +4,12 @@ import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
 import serviceReducer from './features/serviceSlice';
 import settingReducer from './features/settingsSlice';
+import workReducer from './features/worksSlice';
 
 const rootReducer = combineReducers({
   services: serviceReducer, 
   settings: settingReducer, 
+  works: workReducer, 
 });
 
 const persistConfig = {

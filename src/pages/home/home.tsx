@@ -16,9 +16,9 @@ import { useInView } from 'react-intersection-observer';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { FreeMode, Autoplay } from "swiper/modules";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../store";
-import { setShowNav } from "../../features/settingsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store";
+import { getSettings, setShowNav } from "../../features/settingsSlice";
 
 const Home = () => {
     const [aboutUsRef, aboutUsInView] = useInView({
@@ -190,7 +190,13 @@ const Home = () => {
     }, []);
 
     const dispatch = useDispatch<AppDispatch>();
+    const settings = useSelector((state: RootState) => state.settings.settings);
 
+    useEffect(() => {
+        dispatch(getSettings())
+        
+    }, [dispatch])
+    // console.log(settings ? settings[0] : null);
     return (
         <DefaultLayout>
             <section className="hero">
@@ -209,8 +215,8 @@ const Home = () => {
                             <motion.svg variants={item2} width="53" height="46" viewBox="0 0 53 46" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M2.88087 45.6487C-1.76535 37.0326 1.45289 26.2813 10.069 21.6351L49.9196 0.145784C54.5658 8.76191 51.3476 19.5132 42.7315 24.1594L2.88087 45.6487Z" fill="#FFDD63"/>
                             </motion.svg>
-                            <motion.h1 variants={item}>نبدع</motion.h1>
-                            <motion.p variants={item}>فنوءثر فنحقق نتائج</motion.p>
+                            <motion.h1 variants={item}>{settings?.hero_title as any || "نبدع"}</motion.h1>
+                            <motion.p variants={item}>{settings?.hero_sub_title as any || "فنوءثر فنحقق نتائج"}</motion.p>
                             <motion.a href={"/contact-us"} variants={item}>
                                 تواصل معنا الأن
                             </motion.a>
@@ -226,18 +232,18 @@ const Home = () => {
                                 <motion.div className="back" style={{opacity}}></motion.div>
                                 <motion.div className="container" style={{scale}}>
                                     <motion.div className={move.get() < 1 ? "moveTop" : ""}>
-                                        <span>وكاله ابداعيه</span>
+                                        <span>{settings?.establishment_span as any || ""}</span>
                                         <img src={logodark} />
                                     </motion.div>
                                     <div className="text">
                                         <motion.div className={move.get() < 1 ? "moveRight" : ""}> 
-                                            <h1>يسعدنا ان نكون شريكا في مشروعك</h1>
+                                            <h1>{settings?.establishment_title as any || ""}</h1>
                                             <p>
-                                                لتعظيم الصورة الذهنيّـة لعملائنا، من خلال حلول تواصلية وتسويقية تخلق رسائل مؤثرة، تلهم الأفعال وتحرك المشاعر لتحقيق مستهدفاتهم.
+                                                {settings?.establishment_description as any || ""}
                                             </p>
                                         </motion.div>
                                         <motion.span className={move.get() < 1 ? "moveLeft" : ""}>
-                                            منذ 2017
+                                            {settings?.establishment_date as any || ""}
                                         </motion.span>
                                     </div>
                                 </motion.div>
@@ -255,7 +261,7 @@ const Home = () => {
             <section className="portfolio">
                 <div className="container">
                     <img src={logo} alt="logo" />
-                    <p>وكالة ابداعية تقدم خدمات بناء الاستراتيجيات التسويقية وصناعة الحملات والاعلانات الابداعية والتسويق الرقمي.</p>
+                    <p>{settings?.preview_title as any || ""}</p>
                     <div className="cards_wrapper">
                         <Link
                             to="/about-us"
@@ -292,13 +298,13 @@ const Home = () => {
                             </div>
                         </Link>
                     </div>
-                    <p>وكالة ابداعية تقدم خدمات بناء الاستراتيجيات التسويقية وصناعة الحملات والاعلانات.</p>
+                    <p>{settings?.preview_title2 as any || ""}</p>
                 </div>
             </section>
             <section className="sponsors">
                 <div className="">
                     <h1>عـملاؤنــــا</h1>
-                    <p>نفخر بثقة أكثر من 100 عميل وشريك قمنا بالعمل معهم لصناعة حملات ومشاريع إبداعيّة</p>
+                    <p>{settings?.sponsor_description as any || ""}</p>
                     <Swiper
                         spaceBetween={20}
                         slidesPerView={"auto"}
