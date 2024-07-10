@@ -76,6 +76,7 @@ const Home = () => {
 
     const [isElementVisible, setIsElementVisible] = useState(false);
     const [isNavSticky, setIsNavSticky] = useState(false);
+    const [isStop, setStop] = useState(false);
     const [scrollRange, setScrollRange] = useState([0, 0]);
     const elementBottom = useRef<HTMLButtonElement | null>(null);
     const elementRef = useRef<HTMLDivElement | null>(null);
@@ -86,19 +87,19 @@ const Home = () => {
 
     const scale = useTransform(
         scrollTop,
-        [100, 600],
+        [150, 600],
         [1, 40]
     );
 
     const move = useTransform(
         scrollTop,
-        [0, 100],
+        [0, 150],
         [1, 0]
     );
 
     const opacity = useTransform(
         scrollTop,
-        [100, 150],
+        [150, 200],
         [1, 0]
     );
 
@@ -126,7 +127,19 @@ const Home = () => {
             }
         });
     }, [scrollY, isNavSticky]);
-
+    const stopRef = useRef(isStop);
+    useEffect(() => {
+        stopRef.current = isStop;
+    }, [isStop]);
+    const [isPass, setIsPass] = useState(false)
+    const isPassRef = useRef(isPass);
+    useEffect(() => {
+        isPassRef.current = isPass;
+    }, [isPass]);
+    const showElmentRef = useRef(isElementVisible);
+    useEffect(() => {
+        showElmentRef.current = isElementVisible;
+    }, [isElementVisible]);
     const handleScroll = (): void => {
         if (elementRef.current) {
             const rect = elementRef.current.getBoundingClientRect();
@@ -134,12 +147,32 @@ const Home = () => {
             const elementBottom = rect.bottom;
             const windowTop = window.pageYOffset;
             scrollTop.set(elementRef.current.scrollTop);
-            setIsElementVisible(elementTop > -10 && elementTop < 50 && windowTop > elementBottom && (windowTop - elementBottom) < (elementBottom / 2) + 300);
-            // if (!isElementVisible) {
-            //     window.scrollTo(0, elementRef.current.offsetTop)
-            // }
+            
+            setIsElementVisible(elementTop <= 0 && !isPassRef.current);
+            if (elementTop >= 100 && isPassRef.current) {
+                setIsPass(false);
+                setStop(false)
+            }
         }
         if (elementRefCont.current) {
+            const windowTop = window.pageYOffset;
+            
+            console.log(isPassRef.current);
+            console.log(stopRef.current);
+            console.log(showElmentRef.current);
+            console.log("---------------------");
+            
+            if (elementRefCont.current.getBoundingClientRect().top > 0 && stopRef.current) {
+                setIsElementVisible(true);
+                setStop(false)
+            }
+
+            if (elementRefCont.current.getBoundingClientRect().bottom < -300 && !stopRef.current) {
+                window.scrollTo(0, elementRefCont.current.offsetTop)
+                setStop(true)
+                setIsPass(true)
+            }
+
             scrollTop.set(elementRefCont.current.getBoundingClientRect().top * -1);        
         }
     };
@@ -179,25 +212,31 @@ const Home = () => {
                 </div>
             </section>
             <div className="establishment_wrapper" ref={elementRefCont} onScroll={handleScroll}>
-                <section className="establishment" ref={elementRef} onScroll={handleScroll} style={{position: isElementVisible ? "fixed" : 'absolute'}}>
-                    <motion.div className="back" style={{opacity}}></motion.div>
-                    <motion.div className="container" style={{scale}}>
-                        <motion.div className={move.get() < 1 ? "moveTop" : ""}>
-                            <span>وكاله ابداعيه</span>
-                            <img src={logodark} />
-                        </motion.div>
-                        <div className="text">
-                            <motion.div className={move.get() < 1 ? "moveRight" : ""}> 
-                                <h1>يسعدنا ان نكون شريكا في مشروعك</h1>
-                                <p>
-                                    لتعظيم الصورة الذهنيّـة لعملائنا، من خلال حلول تواصلية وتسويقية تخلق رسائل مؤثرة، تلهم الأفعال وتحرك المشاعر لتحقيق مستهدفاتهم.
-                                </p>
-                            </motion.div>
-                            <motion.span className={move.get() < 1 ? "moveLeft" : ""}>
-                                منذ 2017
-                            </motion.span>
-                        </div>
-                    </motion.div>
+                <section className="establishment" ref={elementRef} onScroll={handleScroll} style={{position: isElementVisible && !isStop ? "fixed" : 'absolute'}}>
+                    {
+                        !isStop && (
+                            <>
+                                <motion.div className="back" style={{opacity}}></motion.div>
+                                <motion.div className="container" style={{scale}}>
+                                    <motion.div className={move.get() < 1 ? "moveTop" : ""}>
+                                        <span>وكاله ابداعيه</span>
+                                        <img src={logodark} />
+                                    </motion.div>
+                                    <div className="text">
+                                        <motion.div className={move.get() < 1 ? "moveRight" : ""}> 
+                                            <h1>يسعدنا ان نكون شريكا في مشروعك</h1>
+                                            <p>
+                                                لتعظيم الصورة الذهنيّـة لعملائنا، من خلال حلول تواصلية وتسويقية تخلق رسائل مؤثرة، تلهم الأفعال وتحرك المشاعر لتحقيق مستهدفاتهم.
+                                            </p>
+                                        </motion.div>
+                                        <motion.span className={move.get() < 1 ? "moveLeft" : ""}>
+                                            منذ 2017
+                                        </motion.span>
+                                    </div>
+                                </motion.div>
+                            </>
+                        )
+                    }
                     <div className="video_container">
                         <video width="100%" height="100%" autoPlay muted loop>
                             <source src={video_main} type="video/mp4" />

@@ -264,6 +264,7 @@ header .nav button {
     z-index: 10 !important;
     background-color: #fff;
 }
+
 .establishment .video_container video {
     object-fit: cover;
     width: 100%;
