@@ -1,1 +1,1 @@
-export const API_URL:string = "https://trio-api.ykdev.online"
+export const API_URL:string = "https://admin.trio-sa.net"

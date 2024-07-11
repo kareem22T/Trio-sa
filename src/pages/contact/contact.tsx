@@ -4,7 +4,7 @@ import service from "../../images/service.jpeg"
 import './contact.css'
 import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "../../store"
-import { setShowNav } from "../../features/settingsSlice"
+import { getSettings, setShowNav } from "../../features/settingsSlice"
 import { useEffect, useState } from "react"
 import { API_URL } from "../../_env"
 import axios from "axios"
@@ -110,15 +110,17 @@ const Contact = () => {
   };
 
   const services = useSelector((state: RootState) => state.services.services);
+  const settings = useSelector((state: RootState) => state.settings.settings);
     
   useEffect(() => {
       dispatch(getServices())
+      dispatch(getSettings())
       
   }, [dispatch])
 
   return (
     <DefaultLayout>
-      <section className="hero contact-hero">
+      <section className="hero contact-hero" style={{backgroundImage: "url(" + API_URL + settings?.contact_us + ")", backgroundSize: "cover", backgroundRepeat: "no-repeat"}}>
         <div className="hero_wrapper">
           <div className="nav">
             <img src={logo} alt="" />

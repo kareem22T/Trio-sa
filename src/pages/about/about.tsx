@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "../../store"
 import { getSettings, setShowNav } from "../../features/settingsSlice"
 import { useEffect } from "react"
+import { API_URL } from "../../_env"
 
 const About = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -22,7 +23,7 @@ const About = () => {
 
     return (
         <DefaultLayout>
-        <section className="hero about-hero">
+        <section className="hero about-hero" style={{backgroundImage: "url(" + API_URL + settings?.about_us + ")", backgroundSize: "cover", backgroundRepeat: "no-repeat"}}>
             <div className="hero_wrapper">
                 <div className="nav">
                     <img src={logo} alt="" />
@@ -64,19 +65,19 @@ const About = () => {
                     <path d="M0.7378 734.578L8.80057 735.865L10.0884 727.803L2.0256 726.515L0.7378 734.578ZM1012.09 1.8026L1004.03 0.514834L1002.74 8.57764L1010.8 9.86541L1012.09 1.8026ZM5.99982 732L1008 5.9999L1006.83 4.38034L4.82636 730.38L5.99982 732Z" fill="#FF512F" fill-opacity="0.46"/>
                     </svg>
 
-                    <img src={about} alt="" />
+                    <img src={API_URL + settings?.about_us_main} alt="" />
                 </div>
             </div>
         </section>
-        <section className="testemonials">
+        <section className="testemonials" style={{backgroundImage: "url(" + API_URL + settings?.about_us_bg + ")", backgroundSize: "cover", backgroundRepeat: "no-repeat"}}>
             <div className="container">
                 <div className="text">
                     <h2>هدفنا</h2>
-                    <img src={testmain} alt="" />
+                    <img src={API_URL + settings?.about_us_large} alt="" />
                 </div>
                 <div className="images">
-                    <img src={test1} alt="" />
-                    <img src={test2} alt="" />
+                    <img src={API_URL + settings?.about_us_first} alt="" />
+                    <img src={API_URL + settings?.about_us_second} alt="" />
                 </div>
             </div>
         </section>

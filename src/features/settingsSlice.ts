@@ -16,6 +16,25 @@ const initialState: SettingsState = {
 
 interface SettingsType {
     hero_title: string | null;
+    hero_img: string | null;
+    third_bg: string | null;
+    video_main: string | null;
+    third_bg_work: string | null;
+    third_bg_services: string | null;
+    third_bg_about: string | null;
+    footer: string | null;
+    portfolio_pdf: string | null;
+    profile_pdf: string | null;
+    our_services: string | null;
+    our_work: string | null;
+    about_us: string | null;
+    contact_us: string | null;
+    about_us_main: string | null;
+    about_us_large: string | null;
+    about_us_first: string | null;
+    about_us_second: string | null;
+    about_us_bg: string | null;
+    video: string | null;
     hero_sub_title: string | null;
     establishment_span: string | null;
     establishment_title: string | null;

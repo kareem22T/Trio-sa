@@ -3,7 +3,7 @@ import logo from "../../images/logo.png"
 import './portfolio.css'
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
-import { setShowNav } from "../../features/settingsSlice";
+import { getSettings, setShowNav } from "../../features/settingsSlice";
 import { fetchWorks } from "../../features/worksSlice";
 import { useEffect } from "react";
 import { API_URL } from "../../_env";
@@ -16,6 +16,7 @@ const Portfolio = () => {
     const works = useSelector((state: RootState) => state.works.works);
     const totalPages = useSelector((state: RootState) => state.works.totalPages);
     const currentPage = useSelector((state: RootState) => state.works.pageNumber);
+    const settings = useSelector((state: RootState) => state.settings.settings);
   
     const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
       dispatch(fetchWorks({ page: value, pageSize: 20}));
@@ -23,11 +24,12 @@ const Portfolio = () => {
 
     useEffect(() => {
         dispatch(fetchWorks({page: 1, pageSize: 20}));
+        dispatch(getSettings())
       }, [dispatch]);
     
     return (
         <DefaultLayout>
-        <section className="hero portfolio-hero">
+        <section className="hero portfolio-hero"  style={{backgroundImage: "url(" + API_URL + settings?.our_work + ")", backgroundSize: "cover", backgroundRepeat: "no-repeat"}}>
             <div className="hero_wrapper">
                 <div className="nav">
                     <img src={logo} alt="" />
@@ -51,7 +53,7 @@ const Portfolio = () => {
         <section className="portfolio_cards">
             <div className="container">
                 {
-                    (works && works.length )&&(
+                    (works && works.length > 0) && (
                         works.map((work => (
                             <div className="portfolio_card">
                                 <img src={API_URL + work.photo_path} alt="" />

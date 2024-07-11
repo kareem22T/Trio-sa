@@ -3,6 +3,7 @@ import logo from "../../images/logo.png"
 import { AppDispatch, RootState } from "../../store";
 import { getSettings } from "../../features/settingsSlice";
 import { useEffect } from "react";
+import { API_URL } from "../../_env";
 
 const Footer = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -13,7 +14,7 @@ const Footer = () => {
         
     }, [dispatch])
     return (
-        <footer>
+        <footer  style={{backgroundImage: "url(" + API_URL + settings?.footer + ")", backgroundSize: "cover", backgroundRepeat: "no-repeat"}}>
             <div className="container">
                 <div className="text">
                     <img src={logo} alt="" />
@@ -70,9 +71,9 @@ const Footer = () => {
                         )
                     }
                     <div className="download">
-                        <a href="">تحميل البروفايل </a>
+                        <a href={API_URL + settings?.profile_pdf} download={"download"} target="_blank">تحميل البروفايل </a>
                         أو
-                        <a href="">تحميل الأعمال</a>
+                        <a href={API_URL + settings?.portfolio_pdf} download={"download"} target="_blank">تحميل الأعمال</a>
                     </div>
                 </div>
             </div>
