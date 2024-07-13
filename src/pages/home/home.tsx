@@ -5,7 +5,7 @@ import about_us_img from "../../images/acdddf27694d06e4baeecfcb338dcb24.jpeg";
 import services_img from "../../images/46d95ad34bc5745e6e6fad1073dd7af0.jpeg";
 import ourWork_img from "../../images/bcbfb627b531b38c8bda40ab1a51c57c.jpeg";
 import video_main from "../../videos/video.mp4";
-import sponsor from "../../images/sponsor.png";
+import bg from "../../images/es_bg.svg";
 import logodark from "../../images/logo-black.png";
 import { motion, useMotionValue, useTransform, useViewportScroll } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
@@ -212,6 +212,31 @@ const Home = () => {
 
   }, [])
 
+  const [autoplayBlocked, setAutoplayBlocked] = useState(false);
+
+  useEffect(() => {
+    const video = document.querySelector('video');
+    if (video) {
+      video.controls = false;
+      video.play().catch(error => {
+        console.error('Autoplay was prevented:', error);
+        setAutoplayBlocked(true);
+      });
+    }
+  }, [settings]);
+
+  const handlePlay = () => {
+    const video = document.querySelector('video');
+    if (video) {
+      video.play().then(() => {
+        setAutoplayBlocked(false);
+      }).catch(error => {
+        console.error('Error attempting to play:', error);
+      });
+    }
+  };
+  
+
   return (
     <DefaultLayout>
       <section className="hero"  style={{backgroundImage: "url(" + API_URL + settings?.hero_img + ")", backgroundSize: "cover", backgroundRepeat: "no-repeat"}}>
@@ -306,10 +331,16 @@ const Home = () => {
                 )
             }
           <div className="video_container">
-            <video width="100%" src={API_URL + settings?.video} height="100%" autoPlay muted loop>
-              <source src={API_URL + settings?.video} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            {
+              (API_URL + settings?.video).endsWith('.mp4') ? (
+                <video width="100%" src={API_URL + settings?.video} height="100%" autoPlay muted loop>
+                  <source src={API_URL + settings?.video} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <img src={API_URL + settings?.video}  className="im" />
+              )
+            }
           </div>
         </section>
       </div>
