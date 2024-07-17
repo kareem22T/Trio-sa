@@ -22,6 +22,7 @@ interface SettingsType {
     third_bg_work: string | null;
     third_bg_services: string | null;
     third_bg_about: string | null;
+    logo_main: string | null;
     footer: string | null;
     portfolio_pdf: string | null;
     profile_pdf: string | null;

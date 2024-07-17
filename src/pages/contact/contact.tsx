@@ -123,7 +123,7 @@ const Contact = () => {
       <section className="hero contact-hero" style={{backgroundImage: "url(" + API_URL + settings?.contact_us + ")", backgroundSize: "cover", backgroundRepeat: "no-repeat"}}>
         <div className="hero_wrapper">
           <div className="nav">
-            <img src={logo} alt="" />
+            <a href="/"><img src={API_URL + settings?.logo_main} alt="" /></a>
             <button onClick={() => {
               dispatch(setShowNav());
             }}>

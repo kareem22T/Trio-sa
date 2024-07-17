@@ -1,12 +1,7 @@
 import { Link } from "react-router-dom";
 import DefaultLayout from "../../layout/DefaultLayout";
-import logo from "../../images/logo.png";
-import about_us_img from "../../images/acdddf27694d06e4baeecfcb338dcb24.jpeg";
-import services_img from "../../images/46d95ad34bc5745e6e6fad1073dd7af0.jpeg";
-import ourWork_img from "../../images/bcbfb627b531b38c8bda40ab1a51c57c.jpeg";
-import video_main from "../../videos/video.mp4";
-import bg from "../../images/es_bg.svg";
-import logodark from "../../images/logo-black.png";
+import sign1 from "../../images/io-01 1.png";
+import sign2 from "../../images/io-01 2.png";
 import { motion, useMotionValue, useTransform, useViewportScroll } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -20,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { getSettings, setShowNav } from "../../features/settingsSlice";
 import { API_URL } from "../../_env";
+import { transform } from "typescript";
 
 const Home = () => {
   const [aboutUsRef, aboutUsInView] = useInView({
@@ -62,19 +58,40 @@ const Home = () => {
     hidden: {
       scale: 0,
       opacity: 0,
-      rotate: -30,
+      // rotate: -30,
+      x: "-50%", // Directly apply 'x' here
     },
     visible: {
       scale: 1,
       opacity: 1,
-      rotate: 0,
+      // rotate: 0,
+      x: "105%", // Directly apply 'x' here
       transition: {
         duration: 0.4,
-        delay: 1,
+        delay: 1.4,
       },
     },
   };
-
+  
+  const item3 = {
+    hidden: {
+      scale: 0,
+      opacity: 0,
+      // rotate: -30,
+      x: "50%", // Directly apply 'x' here
+    },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      // rotate: 0,
+      x: "-105%", // Directly apply 'x' here
+      transition: {
+        duration: 0.4,
+        delay: 1.4,
+      },
+    },
+  };
+  
   const [isElementVisible, setIsElementVisible] = useState(false);
   const [isNavSticky, setIsNavSticky] = useState(false);
   const [isStop, setStop] = useState(false);
@@ -242,7 +259,7 @@ const Home = () => {
       <section className="hero"  style={{backgroundImage: "url(" + API_URL + settings?.hero_img + ")", backgroundSize: "cover", backgroundRepeat: "no-repeat"}}>
         <div className="hero_wrapper">
           <div className="nav">
-            <img src={logo} alt="" />
+            <a href="/"><img src={API_URL + settings?.logo_main} alt="" /></a>
             <button onClick={() => dispatch(setShowNav())}>
               <svg
                 width="34"
@@ -275,25 +292,30 @@ const Home = () => {
               initial="hidden"
               animate="visible"
             >
-              <motion.svg
-                variants={item2}
-                width="53"
-                height="46"
-                viewBox="0 0 53 46"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M2.88087 45.6487C-1.76535 37.0326 1.45289 26.2813 10.069 21.6351L49.9196 0.145784C54.5658 8.76191 51.3476 19.5132 42.7315 24.1594L2.88087 45.6487Z"
-                  fill="#FFDD63"
-                />
-              </motion.svg>
-              <motion.h1 variants={item}>
-                {settings?.hero_title || "نبدع"}
-              </motion.h1>
-              <motion.p variants={item}>
-                {settings?.hero_sub_title || "فنوءثر فنحقق نتائج"}
-              </motion.p>
+              <div style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center"
+              }}>
+                <motion.img variants={item2} src={sign1} style={{
+                    width: "72px",
+                    transform: "translateX(105%)"
+                }} />
+                <div>
+                  <motion.h1 variants={item}>
+                    {settings?.hero_title || "نبدع"}
+                  </motion.h1>
+                  <motion.p variants={item}>
+                    {settings?.hero_sub_title || "فنوءثر فنحقق نتائج"}
+                  </motion.p>
+                </div>
+                <motion.img variants={item3} src={sign2} style={{
+                    width: "72px",
+                    transform: "translateX(-105%)"
+                }} />
+              </div>
+              
               <motion.a href={"/contact-us"} variants={item}>
                 تواصل معنا الأن
               </motion.a>
@@ -301,35 +323,10 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <div className="establishment_wrapper" ref={elementRefCont} onScroll={handleScroll}>
+      <div className="establishment_wrapper">
         <section
           className="establishment"
-          ref={elementRef}
-          onScroll={handleScroll}
-          style={{ position: isElementVisible && !isStop ? "fixed" : "absolute" }}
         >
-            {
-                scrollY.get() < 1000 && (
-                    <div style={{visibility: isStop ? "hidden" : "visible"}}>
-                        <motion.div className="back" style={{ opacity }}></motion.div>
-                        <motion.div className="container" style={{ scale }}>
-                        <motion.div className={move.get() < 1 ? "moveTop" : ""}>
-                            <span>{settings?.establishment_span || ""}</span>
-                            <img src={logodark} />
-                        </motion.div>
-                        <div className="text">
-                            <motion.div className={move.get() < 1 ? "moveRight" : ""}>
-                            <h1>{settings?.establishment_title || ""}</h1>
-                            <p>{settings?.establishment_description || ""}</p>
-                            </motion.div>
-                            <motion.span className={move.get() < 1 ? "moveLeft" : ""}>
-                            {settings?.establishment_date || ""}
-                            </motion.span>
-                        </div>
-                        </motion.div>
-                    </div>
-                )
-            }
           <div className="video_container">
             {
               (API_URL + settings?.video).endsWith('.mp4') ? (
@@ -346,7 +343,7 @@ const Home = () => {
       </div>
       <section className="portfolio" style={{backgroundImage: "url(" + API_URL + settings?.third_bg + ")", backgroundSize: "cover", backgroundRepeat: "no-repeat"}}>
         <div className="container">
-          <img src={logo} alt="logo" />
+          <img src={API_URL + settings?.logo_main} alt="logo" />
           <p>{settings?.preview_title || ""}</p>
           <div className="cards_wrapper">
             <Link

@@ -26,7 +26,7 @@ const About = () => {
         <section className="hero about-hero" style={{backgroundImage: "url(" + API_URL + settings?.about_us + ")", backgroundSize: "cover", backgroundRepeat: "no-repeat"}}>
             <div className="hero_wrapper">
                 <div className="nav">
-                    <img src={logo} alt="" />
+                    <a href="/"><img src={API_URL + settings?.logo_main} alt="" /></a>
                     <button  onClick={() => {
                             dispatch(setShowNav());
                         }}>

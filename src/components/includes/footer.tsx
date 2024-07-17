@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../../images/logo.png"
+import pdfIcon from "../../images/pdf.png"
 import { AppDispatch, RootState } from "../../store";
 import { getSettings } from "../../features/settingsSlice";
 import { useEffect } from "react";
@@ -17,7 +18,7 @@ const Footer = () => {
         <footer  style={{backgroundImage: "url(" + API_URL + settings?.footer + ")", backgroundSize: "cover", backgroundRepeat: "no-repeat"}}>
             <div className="container">
                 <div className="text">
-                    <img src={logo} alt="" />
+                    <a href="/"><img src={API_URL + settings?.logo_main} alt="" /></a>
                     <p>
                     {settings?.footer_description as any || ""}
                     </p>
@@ -71,9 +72,15 @@ const Footer = () => {
                         )
                     }
                     <div className="download">
-                        <a href={API_URL + settings?.profile_pdf} download={"download"} target="_blank">تحميل البروفايل </a>
+                        <a href={API_URL + settings?.profile_pdf} download={"download"} target="_blank">
+                            تحميل البروفايل 
+                            <img src={pdfIcon} style={{width: 45}} />
+                        </a>
                         أو
-                        <a href={API_URL + settings?.portfolio_pdf} download={"download"} target="_blank">تحميل الأعمال</a>
+                        <a href={API_URL + settings?.portfolio_pdf} download={"download"} target="_blank">
+                            تحميل الأعمال
+                            <img src={pdfIcon} style={{width: 45}} />
+                        </a>
                     </div>
                 </div>
             </div>

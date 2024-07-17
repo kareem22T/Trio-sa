@@ -32,7 +32,7 @@ const Portfolio = () => {
         <section className="hero portfolio-hero"  style={{backgroundImage: "url(" + API_URL + settings?.our_work + ")", backgroundSize: "cover", backgroundRepeat: "no-repeat"}}>
             <div className="hero_wrapper">
                 <div className="nav">
-                    <img src={logo} alt="" />
+                    <a href="/"><img src={API_URL + settings?.logo_main} alt="" /></a>
                     <button onClick={() => {
                             dispatch(setShowNav());
                         }}>
